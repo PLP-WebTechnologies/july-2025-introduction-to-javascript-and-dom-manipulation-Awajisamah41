@@ -1,0 +1,130 @@
+// A single project folder containing:
+// index.html — your structured HTML content
+// script.js — your JavaScript code
+
+// Each part of the assignment should be clearly commented and organized.
+
+// ====================================================================
+// Part 1: Variable declarations and conditionals
+// ====================================================================
+
+// Variable declarations
+// Declare a constant for a fixed value, like a person's age.
+const age = 30;
+
+// Declare a variable using 'let' for a value that might change.
+let message = "Hello, world!";
+
+// Declare a variable using 'var' (though 'let' is preferred in modern JS).
+var userName = "Alice";
+
+console.log("Part 1: Variables and Conditionals");
+console.log("Age:", age);
+console.log("Message:", message);
+console.log("User Name:", userName);
+
+// Conditionals
+// An if/else statement to check a condition.
+if (age >= 18) {
+    document.getElementById("conditional-result").textContent = "You are an adult.";
+    console.log("You are an adult.");
+} else {
+    document.getElementById("conditional-result").textContent = "You are a minor.";
+    console.log("You are a minor.");
+}
+
+// ====================================================================
+// Part 2: At least 2 custom functions
+// ====================================================================
+
+// Function 1: A simple function that takes no arguments and displays an alert.
+function displayMessage() {
+    const outputElement = document.getElementById("function-output");
+    outputElement.textContent = "The button was clicked!";
+    console.log("The displayMessage function was called.");
+}
+
+// Function 2: A function that takes arguments, performs a calculation, and returns a value.
+function calculateArea(length, width) {
+    const area = length * width;
+    return area;
+}
+
+// Call the second function and log the result to the console.
+const rectangleArea = calculateArea(10, 5);
+console.log("The area of a 10x5 rectangle is:", rectangleArea);
+
+// ====================================================================
+// Part 3: At least 2 loop examples
+// ====================================================================
+
+console.log("\nPart 3: Loop Examples");
+
+// Loop Example 1: A 'for' loop to iterate a specific number of times.
+const forLoopList = document.getElementById("for-loop-list");
+for (let i = 1; i <= 5; i++) {
+    const listItem = document.createElement("li");
+    listItem.textContent = `For loop count: ${i}`;
+    forLoopList.appendChild(listItem);
+    console.log(`For loop count: ${i}`);
+}
+
+// Loop Example 2: A 'while' loop that continues as long as a condition is true.
+const whileLoopList = document.getElementById("while-loop-list");
+let count = 5;
+while (count > 0) {
+    const listItem = document.createElement("li");
+    listItem.textContent = `While loop countdown: ${count}`;
+    whileLoopList.appendChild(listItem);
+    console.log(`While loop countdown: ${count}`);
+    count--; // Decrement the counter
+}
+
+// ====================================================================
+// Part 4: At least 3 DOM interactions
+// ====================================================================
+
+console.log("\nPart 4: DOM Interactions");
+
+// DOM Interaction 1: Changing the text content of an element.
+// Get the button and the paragraph elements by their IDs.
+const changeTextBtn = document.getElementById("change-text-btn");
+const domText = document.getElementById("dom-text");
+
+// Add an event listener to the button.
+changeTextBtn.addEventListener("click", () => {
+    domText.textContent = "The text has been changed by a button click!";
+    console.log("DOM Interaction 1: Text content changed.");
+});
+
+// DOM Interaction 2: Adding a new element to a list.
+const addItemBtn = document.getElementById("add-item-btn");
+const userInput = document.getElementById("user-input");
+const domList = document.getElementById("dom-list");
+
+addItemBtn.addEventListener("click", () => {
+    // Check if the input field is not empty.
+    const textToAdd = userInput.value.trim();
+    if (textToAdd !== "") {
+        const newItem = document.createElement("li");
+        newItem.textContent = textToAdd;
+        domList.appendChild(newItem);
+        userInput.value = ""; // Clear the input field
+        console.log(`DOM Interaction 2: Added new list item "${textToAdd}".`);
+    } else {
+        alert("Please enter some text to add to the list.");
+    }
+});
+
+// DOM Interaction 3: Toggling a CSS class on an element (for styling or visibility).
+// This is done implicitly by the change in text in interaction 1.
+// A more explicit example would be changing the background color.
+domText.addEventListener("mouseover", () => {
+    domText.style.backgroundColor = "lightyellow";
+    console.log("DOM Interaction 3: Background color changed on mouseover.");
+});
+
+domText.addEventListener("mouseout", () => {
+    domText.style.backgroundColor = "transparent";
+    console.log("DOM Interaction 3: Background color reset on mouseout.");
+});
