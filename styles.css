@@ -1,0 +1,88 @@
+/**
+ * @fileoverview This script demonstrates fundamental CSS concepts including
+ * selectors, basic properties, layout, and pseudo-classes.
+ */
+
+/* ====================================================================
+   Part 1: Basic Element and Class Selectors
+   ==================================================================== */
+
+/* Selects all <h1> elements and applies styling */
+h1 {
+  font-family: 'Arial', sans-serif;
+  color: #333;
+  text-align: center;
+}
+
+/* Selects all elements with the class 'container' */
+.container {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* ====================================================================
+   Part 2: ID and Attribute Selectors
+   ==================================================================== */
+
+/* Selects the single element with the ID 'special-item' */
+#special-item {
+  color: #e74c3c;
+  font-weight: bold;
+}
+
+/* Selects all <input> elements with a type of 'text' */
+input[type="text"] {
+  border: 1px solid #ccc;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* ====================================================================
+   Part 3: Box Model and Layout
+   ==================================================================== */
+
+/* Demonstrates the box model with padding and margin */
+.box {
+  background-color: #3498db;
+  color: white;
+  padding: 15px;
+  margin: 10px;
+  border: 2px solid #2980b9;
+  text-align: center;
+}
+
+/* Demonstrates a basic flexbox layout */
+.flex-container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* ====================================================================
+   Part 4: Pseudo-classes for Interactions
+   ==================================================================== */
+
+/* Styles a button on its default state */
+.btn {
+  background-color: #2ecc71;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+/* Changes the button's background color when hovered over */
+.btn:hover {
+  background-color: #27ae60;
+}
+
+/* Changes the button's background color when actively clicked */
+.btn:active {
+  background-color: #1a8b4d;
+}
