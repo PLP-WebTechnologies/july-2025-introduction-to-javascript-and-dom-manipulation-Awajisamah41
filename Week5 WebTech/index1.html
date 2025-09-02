@@ -1,130 +1,230 @@
-// A single project folder containing:
-// index.html — your structured HTML content
-// script.js — your JavaScript code
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Fundamentals</title>
+    <!-- Load Tailwind CSS from CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .section-title {
+            border-bottom: 2px solid theme('colors.purple.600');
+            padding-bottom: 0.5rem;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 p-8 flex items-center justify-center min-h-screen">
 
-// Each part of the assignment should be clearly commented and organized.
+    <div class="bg-white p-8 md:p-12 rounded-2xl shadow-xl max-w-4xl w-full">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-center text-purple-700 mb-8">JavaScript Fundamentals</h1>
+        <p class="text-center text-lg text-gray-600 mb-12">An interactive demonstration of core JavaScript concepts.</p>
 
-// ====================================================================
-// Part 1: Variable declarations and conditionals
-// ====================================================================
+        <!-- ============================================== -->
+        <!-- Part 1: Variable Declarations and Conditionals -->
+        <!-- ============================================== -->
+        <div class="mb-12">
+            <h2 class="section-title text-2xl font-bold mb-4 text-purple-600">Part 1: Variables & Conditionals</h2>
+            <div id="conditional-result" class="bg-blue-50 border border-blue-200 p-4 rounded-xl text-blue-800">
+                <p>The conditional result will appear here.</p>
+            </div>
+            <div id="variable-showcase" class="mt-4 p-4 rounded-xl bg-gray-100 text-gray-700">
+                <p>Variable examples will be displayed here on page load.</p>
+            </div>
+        </div>
 
-// Variable declarations
-// Declare a constant for a fixed value, like a person's age.
-const age = 30;
+        <!-- ================================== -->
+        <!-- Part 2: Custom Functions -->
+        <!-- ================================== -->
+        <div class="mb-12">
+            <h2 class="section-title text-2xl font-bold mb-4 text-purple-600">Part 2: Custom Functions</h2>
+            <div class="flex flex-col md:flex-row items-center gap-4">
+                <button id="calculate-button" class="bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md">
+                    Calculate Area
+                </button>
+                <div id="area-result" class="bg-lime-50 border border-lime-200 p-4 rounded-xl text-lime-800 flex-1 w-full">
+                    <p>Click the button to calculate the area of a circle with radius 10.</p>
+                </div>
+            </div>
+        </div>
 
-// Declare a variable using 'let' for a value that might change.
-let message = "Hello, world!";
+        <!-- ================================== -->
+        <!-- Part 3: Loop Examples -->
+        <!-- ================================== -->
+        <div class="mb-12">
+            <h2 class="section-title text-2xl font-bold mb-4 text-purple-600">Part 3: Loop Examples</h2>
+            <div class="bg-orange-50 border border-orange-200 p-4 rounded-xl text-orange-800">
+                <h4 class="font-semibold mb-2">Favorite Fruits:</h4>
+                <ul id="fruit-list" class="list-disc list-inside"></ul>
+            </div>
+            <div class="mt-4 bg-yellow-50 border border-yellow-200 p-4 rounded-xl text-yellow-800">
+                <h4 class="font-semibold mb-2">Countdown:</h4>
+                <p id="countdown"></p>
+            </div>
+        </div>
 
-// Declare a variable using 'var' (though 'let' is preferred in modern JS).
-var userName = "Alice";
+        <!-- ================================== -->
+        <!-- Part 4: DOM Interactions -->
+        <!-- ================================== -->
+        <div>
+            <h2 class="section-title text-2xl font-bold mb-4 text-purple-600">Part 4: DOM Interactions</h2>
+            <div class="flex flex-col gap-4">
+                <p id="dom-message" class="bg-fuchsia-50 border border-fuchsia-200 p-4 rounded-xl text-fuchsia-800">
+                    This text will change when you type.
+                </p>
+                <div class="flex flex-col md:flex-row items-center gap-4">
+                    <input type="text" id="user-input" placeholder="Type something here..." class="flex-1 w-full p-3 rounded-lg border-2 border-gray-300 focus:outline-none focus:ring-2 focus:ring-fuchsia-500 transition duration-200">
+                    <button id="update-button" class="bg-fuchsia-500 hover:bg-fuchsia-600 text-white font-bold py-3 px-6 rounded-full transition duration-300 shadow-md">
+                        Update Message
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
 
-console.log("Part 1: Variables and Conditionals");
-console.log("Age:", age);
-console.log("Message:", message);
-console.log("User Name:", userName);
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
 
-// Conditionals
-// An if/else statement to check a condition.
-if (age >= 18) {
-    document.getElementById("conditional-result").textContent = "You are an adult.";
-    console.log("You are an adult.");
-} else {
-    document.getElementById("conditional-result").textContent = "You are a minor.";
-    console.log("You are a minor.");
-}
+            // ==============================================
+            // Part 1: Variable Declarations and Conditionals
+            // ==============================================
+            console.log("--- Part 1: Variables & Conditionals ---");
 
-// ====================================================================
-// Part 2: At least 2 custom functions
-// ====================================================================
+            // Variable Declarations
+            // var is function-scoped and can be re-declared.
+            var myName = "Alice";
+            var myName = "Jane"; // This is valid but not recommended
 
-// Function 1: A simple function that takes no arguments and displays an alert.
-function displayMessage() {
-    const outputElement = document.getElementById("function-output");
-    outputElement.textContent = "The button was clicked!";
-    console.log("The displayMessage function was called.");
-}
+            // let is block-scoped and cannot be re-declared.
+            let userAge = 25;
+            // let userAge = 30; // This would cause a SyntaxError
 
-// Function 2: A function that takes arguments, performs a calculation, and returns a value.
-function calculateArea(length, width) {
-    const area = length * width;
-    return area;
-}
+            // const is block-scoped and cannot be re-assigned.
+            const pi = 3.14159;
+            // pi = 3.14; // This would cause a TypeError
 
-// Call the second function and log the result to the console.
-const rectangleArea = calculateArea(10, 5);
-console.log("The area of a 10x5 rectangle is:", rectangleArea);
+            // Display variable values on the page
+            const variableShowcase = document.getElementById('variable-showcase');
+            variableShowcase.innerHTML = `
+                <p><strong>var:</strong> myName is "${myName}"</p>
+                <p><strong>let:</strong> userAge is ${userAge}</p>
+                <p><strong>const:</strong> pi is ${pi}</p>
+            `;
 
-// ====================================================================
-// Part 3: At least 2 loop examples
-// ====================================================================
+            // Conditionals
+            const temperature = 15;
+            const conditionalResult = document.getElementById('conditional-result');
 
-console.log("\nPart 3: Loop Examples");
+            // if/else if/else statement
+            if (temperature > 25) {
+                conditionalResult.innerHTML = "<p>It's a hot day!</p>";
+            } else if (temperature >= 15 && temperature <= 25) {
+                conditionalResult.innerHTML = "<p>It's a pleasant day.</p>";
+            } else {
+                conditionalResult.innerHTML = "<p>It's a cold day!</p>";
+            }
 
-// Loop Example 1: A 'for' loop to iterate a specific number of times.
-const forLoopList = document.getElementById("for-loop-list");
-for (let i = 1; i <= 5; i++) {
-    const listItem = document.createElement("li");
-    listItem.textContent = `For loop count: ${i}`;
-    forLoopList.appendChild(listItem);
-    console.log(`For loop count: ${i}`);
-}
+            // Ternary operator for a simple conditional
+            const isAdult = userAge >= 18 ? "You are an adult." : "You are a minor.";
+            conditionalResult.innerHTML += `<p class="mt-2">Using a ternary operator: ${isAdult}</p>`;
 
-// Loop Example 2: A 'while' loop that continues as long as a condition is true.
-const whileLoopList = document.getElementById("while-loop-list");
-let count = 5;
-while (count > 0) {
-    const listItem = document.createElement("li");
-    listItem.textContent = `While loop countdown: ${count}`;
-    whileLoopList.appendChild(listItem);
-    console.log(`While loop countdown: ${count}`);
-    count--; // Decrement the counter
-}
 
-// ====================================================================
-// Part 4: At least 3 DOM interactions
-// ====================================================================
+            // ==================================
+            // Part 2: Custom Functions
+            // ==================================
+            console.log("--- Part 2: Custom Functions ---");
 
-console.log("\nPart 4: DOM Interactions");
+            // Function 1: A function that returns a value.
+            /**
+             * Calculates the area of a circle.
+             * @param {number} radius The radius of the circle.
+             * @returns {number} The calculated area.
+             */
+            function calculateCircleArea(radius) {
+                return Math.PI * radius * radius;
+            }
 
-// DOM Interaction 1: Changing the text content of an element.
-// Get the button and the paragraph elements by their IDs.
-const changeTextBtn = document.getElementById("change-text-btn");
-const domText = document.getElementById("dom-text");
+            // Function 2: A function that performs an action (in this case, updates the DOM).
+            /**
+             * Displays the area of a circle on the webpage.
+             */
+            function displayArea() {
+                const radius = 10;
+                const area = calculateCircleArea(radius);
+                const areaResultElement = document.getElementById('area-result');
+                areaResultElement.innerHTML = `<p>The area of a circle with a radius of ${radius} is <strong>${area.toFixed(2)}</strong>.</p>`;
+            }
 
-// Add an event listener to the button.
-changeTextBtn.addEventListener("click", () => {
-    domText.textContent = "The text has been changed by a button click!";
-    console.log("DOM Interaction 1: Text content changed.");
-});
+            // Attach the displayArea function to the button's click event
+            const calculateButton = document.getElementById('calculate-button');
+            calculateButton.addEventListener('click', displayArea);
 
-// DOM Interaction 2: Adding a new element to a list.
-const addItemBtn = document.getElementById("add-item-btn");
-const userInput = document.getElementById("user-input");
-const domList = document.getElementById("dom-list");
 
-addItemBtn.addEventListener("click", () => {
-    // Check if the input field is not empty.
-    const textToAdd = userInput.value.trim();
-    if (textToAdd !== "") {
-        const newItem = document.createElement("li");
-        newItem.textContent = textToAdd;
-        domList.appendChild(newItem);
-        userInput.value = ""; // Clear the input field
-        console.log(`DOM Interaction 2: Added new list item "${textToAdd}".`);
-    } else {
-        alert("Please enter some text to add to the list.");
-    }
-});
+            // ==================================
+            // Part 3: Loop Examples
+            // ==================================
+            console.log("--- Part 3: Loop Examples ---");
 
-// DOM Interaction 3: Toggling a CSS class on an element (for styling or visibility).
-// This is done implicitly by the change in text in interaction 1.
-// A more explicit example would be changing the background color.
-domText.addEventListener("mouseover", () => {
-    domText.style.backgroundColor = "lightyellow";
-    console.log("DOM Interaction 3: Background color changed on mouseover.");
-});
+            // Example 1: `for` loop
+            const fruits = ["Apple", "Banana", "Cherry", "Date", "Grape"];
+            const fruitList = document.getElementById('fruit-list');
 
-domText.addEventListener("mouseout", () => {
-    domText.style.backgroundColor = "transparent";
-    console.log("DOM Interaction 3: Background color reset on mouseout.");
-});
+            for (let i = 0; i < fruits.length; i++) {
+                const listItem = document.createElement('li');
+                listItem.textContent = fruits[i];
+                fruitList.appendChild(listItem);
+            }
+
+            // Example 2: `while` loop
+            let countdown = 5;
+            const countdownElement = document.getElementById('countdown');
+            let countdownMessage = "";
+
+            while (countdown > 0) {
+                countdownMessage += countdown + "... ";
+                countdown--;
+            }
+            countdownMessage += "Blast off!";
+            countdownElement.textContent = countdownMessage;
+
+
+            // ==================================
+            // Part 4: DOM Interactions
+            // ==================================
+            console.log("--- Part 4: DOM Interactions ---");
+
+            // Interaction 1: Change the text content of an element on page load.
+            // This is already done for "conditional-result", "variable-showcase", etc.
+
+            // Interaction 2: Add an event listener to a button.
+            // This is already done for the "calculate-button" above.
+
+            // Interaction 3: Get user input and update an element based on it.
+            const updateButton = document.getElementById('update-button');
+            const userInput = document.getElementById('user-input');
+            const domMessage = document.getElementById('dom-message');
+
+            // Event listener for the button click
+            updateButton.addEventListener('click', () => {
+                const message = userInput.value;
+                if (message) {
+                    domMessage.textContent = `You typed: "${message}"`;
+                    // Clear the input field for the next message
+                    userInput.value = '';
+                } else {
+                    domMessage.textContent = "Please enter some text in the input field.";
+                }
+            });
+
+            // Optional: Also update the message as the user types
+            userInput.addEventListener('input', () => {
+                domMessage.textContent = `You are typing: "${userInput.value}"`;
+            });
+
+        });
+    </script>
+
+</body>
+</html>
